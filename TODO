@@ -1,4 +1,7 @@
  * bind do htdocs
  * index.php
-* plik gplafferoshop.sql twrzący bazę i tabele
-* połączenie z bazą
+* plik gplafferoshop.sql tworzący
+ **bazę
+ ** tabelę products z kluczem głównym products_id i proste dane
+ ** tabelę customers z kluczem głównym customers_id i proste dane
+* połączenie z bazą i wyświetlenie danych
