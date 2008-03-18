@@ -1,7 +1,7 @@
- * bind do htdocs
+ * bind do htdocs w /etc/fstab
  * index.php
-* plik gplafferoshop.sql tworzący
+ * plik gplafferoshop.sql tworzący
  **bazę
  ** tabelę products z kluczem głównym products_id i proste dane
  ** tabelę customers z kluczem głównym customers_id i proste dane
-* połączenie z bazą i wyświetlenie danych
+ * połączenie z bazą i wyświetlenie danych
