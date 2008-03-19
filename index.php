@@ -16,7 +16,17 @@ printf("Host information: %s\n<br>", $mysqli->host_info);
 
 /* Display results as associative arrays */
 if($result=$mysqli->query("SELECT * FROM products")){
-  echo 'products<br>';
+  echo '<br>products<br>';
+  echo '<table border="1"><thead><tr><th>id</th><th>name</th><th>price</th></tr></thead><tbody>';
+  while($row=$result->fetch_array(MYSQLI_ASSOC)){
+    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['name'] . '</td><td>' . $row['price'] . '</td></tr>';
+  }
+  echo '</tbody></table>';
+  $result->free();
+ }
+
+if($result=$mysqli->query("SELECT * FROM customers")){
+  echo '<br>customers<br>';
   echo '<table border="1"><thead><tr><th>id</th><th>name</th></tr></thead><tbody>';
   while($row=$result->fetch_array(MYSQLI_ASSOC)){
     echo '<tr><td>' . $row['id'] . '</td><td>' . $row['name'] . '</td></tr>';
@@ -25,11 +35,11 @@ if($result=$mysqli->query("SELECT * FROM products")){
   $result->free();
  }
 
-if($result=$mysqli->query("SELECT * FROM customers")){
-  echo 'customers<br>';
-  echo '<table border="1"><thead><tr><th>id</th><th>name</th></tr></thead><tbody>';
+if($result=$mysqli->query("SELECT * FROM transactions")){
+  echo '<br>transactions<br>';
+  echo '<table border="1"><thead><tr><th>id</th><th>date</th><th>products_id</th><th>price</th><th>quantity</th><th>customers_id</th></tr></thead><tbody>';
   while($row=$result->fetch_array(MYSQLI_ASSOC)){
-    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['name'] . '</td></tr>';
+    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['tdate'] . '</td><td>' . $row['products_id'] . '</td><td>' . $row['price'] . '</td><td>' . $row['quantity'] . '</td><td>' . $row['customers_id'] . '</td></tr>';
   }
   echo '</tbody></table>';
   $result->free();

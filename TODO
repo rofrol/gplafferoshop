@@ -5,3 +5,7 @@
  ** tabelę products z kluczem głównym products_id i proste dane
  ** tabelę customers z kluczem głównym customers_id i proste dane
  * połączenie z bazą i wyświetlenie danych
+* zakup produktu przez klienta
+** ceny dodać do produktów
+** dodać waluty
+** dodać tabelę transactions: id, date, product_id, price, quantity, customer_id
