@@ -17,9 +17,9 @@ printf("Host information: %s\n<br>", $mysqli->host_info);
 /* Display results as associative arrays */
 if($result=$mysqli->query("SELECT * FROM products")){
   echo '<br>products<br>';
-  echo '<table border="1"><thead><tr><th>id</th><th>name</th><th>price</th></tr></thead><tbody>';
+  echo '<table border="1"><thead><tr><th>products_id</th><th>products_name</th><th>products_price</th></tr></thead><tbody>';
   while($row=$result->fetch_array(MYSQLI_ASSOC)){
-    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['name'] . '</td><td>' . $row['price'] . '</td></tr>';
+    echo '<tr><td>' . $row['products_id'] . '</td><td>' . $row['products_name'] . '</td><td>' . $row['products_price'] . '</td></tr>';
   }
   echo '</tbody></table>';
   $result->free();
@@ -27,9 +27,9 @@ if($result=$mysqli->query("SELECT * FROM products")){
 
 if($result=$mysqli->query("SELECT * FROM customers")){
   echo '<br>customers<br>';
-  echo '<table border="1"><thead><tr><th>id</th><th>name</th></tr></thead><tbody>';
+  echo '<table border="1"><thead><tr><th>customers_id</th><th>customers_name</th></tr></thead><tbody>';
   while($row=$result->fetch_array(MYSQLI_ASSOC)){
-    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['name'] . '</td></tr>';
+    echo '<tr><td>' . $row['customers_id'] . '</td><td>' . $row['customers_name'] . '</td></tr>';
   }
   echo '</tbody></table>';
   $result->free();
@@ -37,9 +37,9 @@ if($result=$mysqli->query("SELECT * FROM customers")){
 
 if($result=$mysqli->query("SELECT * FROM transactions")){
   echo '<br>transactions<br>';
-  echo '<table border="1"><thead><tr><th>id</th><th>date</th><th>products_id</th><th>price</th><th>quantity</th><th>customers_id</th></tr></thead><tbody>';
+  echo '<table border="1"><thead><tr><th>transactions_id</th><th>transactions_date</th><th>products_id</th><th>transactions_price</th><th>transactions_quantity</th><th>customers_id</th></tr></thead><tbody>';
   while($row=$result->fetch_array(MYSQLI_ASSOC)){
-    echo '<tr><td>' . $row['id'] . '</td><td>' . $row['tdate'] . '</td><td>' . $row['products_id'] . '</td><td>' . $row['price'] . '</td><td>' . $row['quantity'] . '</td><td>' . $row['customers_id'] . '</td></tr>';
+    echo '<tr><td>' . $row['transactions_id'] . '</td><td>' . $row['transactions_date'] . '</td><td>' . $row['products_id'] . '</td><td>' . $row['transactions_price'] . '</td><td>' . $row['transactions_quantity'] . '</td><td>' . $row['customers_id'] . '</td></tr>';
   }
   echo '</tbody></table>';
   $result->free();

@@ -4,29 +4,29 @@ DROP DATABASE IF EXISTS gplafferoshop;
 CREATE DATABASE gplafferoshop;
 USE gplafferoshop;
 CREATE TABLE products (
-   id int NOT NULL auto_increment,
-   name varchar(128) NOT NULL,
-   price decimal(15,4) NOT NULL,
-   PRIMARY KEY (id)
+   products_id int NOT NULL auto_increment,
+   products_name varchar(128) NOT NULL,
+   products_price decimal(15,4) NOT NULL,
+   PRIMARY KEY (products_id)
 ) ENGINE=INNODB;
 
 CREATE TABLE customers (
-   id int NOT NULL auto_increment,
-   name varchar(128) NOT NULL,
-   PRIMARY KEY (id)
+   customers_id int NOT NULL auto_increment,
+   customers_name varchar(128) NOT NULL,
+   PRIMARY KEY (customers_id)
 ) ENGINE=INNODB;
 
 # czy products_id nie musi byc NOT NULL?
 CREATE TABLE transactions (
-   id int NOT NULL auto_increment,
-   tdate date,
+   transactions_id int NOT NULL auto_increment,
+   transactions_date date,
    products_id int,
-   price decimal(15,4) NOT NULL,
-   quantity int NOT NULL,
+   transactions_price decimal(15,4) NOT NULL,
+   transactions_quantity int NOT NULL,
    customers_id int,
-   PRIMARY KEY (id),
+   PRIMARY KEY (transactions_id),
    INDEX ind_products_id (products_id),
-   FOREIGN KEY (products_id) REFERENCES products(id)
+   FOREIGN KEY (products_id) REFERENCES products(products_id)
      ON DELETE CASCADE
 ) ENGINE=INNODB;
 
