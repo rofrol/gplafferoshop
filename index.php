@@ -6,12 +6,11 @@ and Derick Rethans - PHP 5 Power Programming -> 6.2.6 Queries
 */
 
 require_once('database.php');
-require_once('products_loaded.php');
-require_once('products.php');
-require_once('customers_loaded.php');
-require_once('customers.php');
-require_once('transactions_loaded.php');
-require_once('transactions.php');
+
+function __autoload($filename) {
+	require_once "{$filename}_loaded.php";
+	require_once "{$filename}.php";
+}
 
 products::display();
 customers::display();
