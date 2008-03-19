@@ -4,15 +4,7 @@ http://www.devshed.com/c/a/MySQL/Implementing-Additional-Methods-with-mysqli-and
 (013147149X_book.pdf) Andi Gutmans, Stig Sæther Bakken,
 and Derick Rethans - PHP 5 Power Programming -> 6.2.6 Queries
  */
-$mysqli = new mysqli("localhost", "root", "droot", "gplafferoshop");
-
-/* check connection */
-if (mysqli_connect_errno()) {
-  printf("Connect failed: %s\n", mysqli_connect_error());
-  exit();
- }
-
-printf("Host information: %s\n<br>", $mysqli->host_info);
+require_once('database.php');
 
 /* Display results as associative arrays */
 if($result=$mysqli->query("SELECT * FROM products")){
