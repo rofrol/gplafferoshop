@@ -6,6 +6,7 @@
  ** tabelę customers z kluczem głównym customers_id i proste dane
  * połączenie z bazą i wyświetlenie danych
 * zakup produktu przez klienta
-** ceny dodać do produktów
+ ** ceny dodać do produktów
+ ** dodać tabelę transactions: id, date, product_id, price, quantity, customer_id itp.
 ** dodać waluty
-** dodać tabelę transactions: id, date, product_id, price, quantity, customer_id
+* database: użyć statycznej metody getConn() ISBN 83-7361-825-2 s. 80
