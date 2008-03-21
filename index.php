@@ -5,12 +5,7 @@ http://www.devshed.com/c/a/MySQL/Implementing-Additional-Methods-with-mysqli-and
 and Derick Rethans - PHP 5 Power Programming -> 6.2.6 Queries
 */
 
-require_once('database.php');
-
-function __autoload($filename) {
-	require_once "{$filename}_loaded.php";
-	require_once "{$filename}.php";
-}
+require_once('autoload.php');
 
 products::display();
 customers::display();
