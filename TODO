@@ -9,4 +9,26 @@
  ** ceny dodać do produktów
  ** dodać tabelę transactions: id, date, product_id, price, quantity, customer_id itp.
 ** dodać waluty
-* database: użyć statycznej metody getConn() ISBN 83-7361-825-2 s. 80
+ * database: użyć statycznej metody getConn() ISBN 83-7361-825-2 s. 80
+* logowanie klientów (authentication)
+putting authentication data into cookies (as we
+did in the previous examples) is not secure because cookies are so easily faked.
+PHP has, of course, a better solution: sessions. PHP 5 Power Programming s. 133
+
+* przeprowadzanie zakupów
+* użycie tranzakcji do robienia zakupów
+
+* PHP
+** logowanie i śledzenie
+*** sesje (jak szybciej i lepiej)
+**** w plikach: zmiana domyślnej ścieżki
+**** w bazie danych
+**** własny mechanizm sesji
+**** ochrona przed fixation
+*** ciasteczka
+** lokalizacja
+*** gettext: bardziej skompikowany, ale chyba lepszy
+*** tablica stringów: gorszy ale używany przez oscommerce
+** baza danych
+*** użycie interfejsu PDO czy mysqli
+*** prepared statements i wtedy nie trzeba escape, chroni przed sql injection
