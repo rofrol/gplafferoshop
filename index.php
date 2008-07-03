@@ -1,6 +1,7 @@
 <a href="products.php">products.php</a><br>
 <a href="customers.php">customers.php</a><br>
 <a href="transactions.php">transactions.php</a><br>
+<a href="login.php">login.php</a><br>
 
 <?php
 /* http://pl.php.net/manual/en/function.mysqli-connect.php
@@ -14,6 +15,7 @@ require_once('autoload.php');
 products::display();
 customers::display();
 transactions::display();
+login::display();
 
 database::getConn()->close();
 ?>
