@@ -1,0 +1,1 @@
+<?php class products_edit_loaded {} ?>
