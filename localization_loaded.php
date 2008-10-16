@@ -1,0 +1,1 @@
+<?php class localization_loaded {} ?>

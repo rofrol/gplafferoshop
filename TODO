@@ -28,6 +28,8 @@ PHP has, of course, a better solution: sessions. PHP 5 Power Programming s. 133
 *** ciasteczka
 ** lokalizacja
 *** gettext: bardziej skompikowany, ale chyba lepszy
+**** plural forms? http://mel.melaxis.com/devblog/2005/08/06/localizing-php-web-sites-using-gettext/
+**** modyfikacja? http://www.onlamp.com/pub/a/php/2002/06/13/php.html?page=2
 *** tablica stringów: gorszy ale używany przez oscommerce
 ** baza danych
 *** użycie interfejsu PDO czy mysqli
