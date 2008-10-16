@@ -10,7 +10,7 @@ http://www.devshed.com/c/a/MySQL/Implementing-Additional-Methods-with-mysqli-and
 and Derick Rethans - PHP 5 Power Programming -> 6.2.6 Queries
 */
 
-require_once('autoload.php');
+require_once('functions.php');
 
 products::display();
 customers::display();
