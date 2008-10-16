@@ -4,11 +4,11 @@ require_once('functions.php');
 class products
 {
 /* Display results as associative arrays */
-	public static function display()
+	public static function display($table)
 	{
 		f_products_update();
 
-		if($result=database::getConn()->query("SELECT * FROM products"))
+		if($result=database::getConn()->query("SELECT * FROM $table"))
 		{
 			echo '<br>products<br>';
 			echo '<table border="1"><thead><tr><th>products_id</th><th>products_name</th><th>products_price</th></tr></thead><tbody>';
@@ -26,7 +26,7 @@ class products
 
 if(!class_exists(products_loaded))
 {
-	products::display();
+	products::display('products');
 	database::getConn()->close();
 }
 ?>
