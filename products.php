@@ -51,13 +51,12 @@ class products
 							echo ' readonly="readonly"';
 						}
 						echo '></td>';
-
 					}
 				}
+				echo '<td><input type="submit" name="submit" value="Zmien"></td>';
 				echo '</tr>';
-
+				echo '</form>';
 			}
-			echo '</form>';
 			echo '</tbody></table>';
 			$result->free();
 		}
