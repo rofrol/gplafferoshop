@@ -10,12 +10,4 @@ function __autoload($filename) {
 	}
 }
 
-function f_products_update()
-{
-	if(isset($_REQUEST['submit']))
-	{
-		$result = database::getConn()->query("UPDATE products SET products_name='$_REQUEST[products_name]', products_price='$_REQUEST[products_price]' WHERE products_id='$_REQUEST[products_id]'");
-	}
-}
-
 ?>
