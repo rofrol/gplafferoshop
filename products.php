@@ -7,8 +7,6 @@ class products
 	public static function display($table)
 	{
 		f_products_update();
-#wyswietlanie thead i tbody rozbilem na dwa if, poniewaz przechodzilo mi przez cale array
-
 
 		if($result=database::getConn()->query("SELECT * FROM $table"))
 		{
@@ -26,14 +24,11 @@ class products
 			}
 			echo '</tr>';
 			echo '</thead>';
-		}
-
-		if($result=database::getConn()->query("SELECT * FROM $table"))
-		{
 			echo '<tbody>';
-			echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post">';
-			while($row=$result->fetch_array(MYSQL_BOTH))
+#musze tu zrobic do...while poniewaz each() zmienia chyba pozycje wskaznika w fetch_array i przechodzi sam do nastepnego wiersza
+			do
 			{
+				echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post">';
 				echo '<tr>';
 				$array_of_keys=array_keys($row);
 				while(list($a,$b)=each($array_of_keys))
@@ -52,6 +47,7 @@ class products
 				echo '</tr>';
 				echo '</form>';
 			}
+			while($row=$result->fetch_array(MYSQL_BOTH));
 			echo '</tbody></table>';
 			$result->free();
 		}
