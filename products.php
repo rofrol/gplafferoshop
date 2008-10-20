@@ -10,27 +10,27 @@ class products
 
 		if($result=database::getConn()->query("SELECT * FROM $table"))
 		{
-			echo "<br>$table<br>";
-			echo "<table border=\"1\"><thead>";
+			echo '<br>'.$table.'<br>';
+			echo '<table border="1"><thead>';
 			$i=1;
 			while($row=$result->fetch_array(MYSQL_BOTH))
 			{
 				$array_of_keys=array_keys($row);
 				if($i==1)
 				{
-					echo "<tr>";
+					echo '<tr>';
 					while(list($a,$b)=each($array_of_keys))
 					{
 						if($a%2!=0)
 						{
-							echo "<th>$b</th>";
+							echo '<th>'.$b.'</th>';
 						}
 					}
-					echo "</tr>";
+					echo '</tr>';
 					$i++;
 				}
 			}
-			echo "</thead>";
+			echo '</thead>';
 		}
 
 		if($result=database::getConn()->query("SELECT * FROM $table"))
@@ -68,10 +68,5 @@ if(!class_exists(products_loaded))
 	products::display('products','products_id');
 	database::getConn()->close();
 }
-
-/*
-				echo '<tr><td><input type="text" readonly="readonly" name="products_id" value="' . $row['products_id'] . '"></td><td><input type="text" name="products_name" value="' . $row['products_name'] .'"></td><td><input type="text" name="products_price" value="' . $row['products_price'] . '"></td><td><input type="submit" name="submit" value="Zmien"></td></tr>';
-*/
-
 ?>
 
