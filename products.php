@@ -7,29 +7,24 @@ class products
 	public static function display($table)
 	{
 		f_products_update();
+#wyswietlanie thead i tbody rozbilem na dwa if, poniewaz przechodzilo mi przez cale array
+
 
 		if($result=database::getConn()->query("SELECT * FROM $table"))
 		{
 			echo '<br>'.$table.'<br>';
 			echo '<table border="1"><thead>';
-			$i=1;
-			while($row=$result->fetch_array(MYSQL_BOTH))
+			$row=$result->fetch_array(MYSQL_BOTH);
+			$array_of_keys=array_keys($row);
+			echo '<tr>';
+			while(list($a,$b)=each($array_of_keys))
 			{
-				$array_of_keys=array_keys($row);
-				if($i==1)
+				if($a%2!=0)
 				{
-					echo '<tr>';
-					while(list($a,$b)=each($array_of_keys))
-					{
-						if($a%2!=0)
-						{
-							echo '<th>'.$b.'</th>';
-						}
-					}
-					echo '</tr>';
-					$i++;
+					echo '<th>'.$b.'</th>';
 				}
 			}
+			echo '</tr>';
 			echo '</thead>';
 		}
 
