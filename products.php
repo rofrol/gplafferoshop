@@ -45,7 +45,13 @@ class products
 				{
 					if($a%2!=0)
 					{
-						echo '<td>'.$row[$b].'</td>';
+						echo '<td><input type="text" name="'.$b.'" value="'.$row[$b].'"';
+						if(ereg("_id$", $b))
+						{
+							echo ' readonly="readonly"';
+						}
+						echo '></td>';
+
 					}
 				}
 				echo '</tr>';
