@@ -12,10 +12,9 @@ and Derick Rethans - PHP 5 Power Programming -> 6.2.6 Queries
 
 require_once('functions.php');
 
-products::display('products');
-customers::display();
-transactions::display();
-login::display();
+display('products');
+display('customers');
+display('transactions');
 
 database::getConn()->close();
 ?>
