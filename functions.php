@@ -12,7 +12,7 @@ function __autoload($filename) {
 
 function display($table)
 {
-        products::update();
+        update($table);
         if($result=database::getConn()->query("SELECT * FROM $table"))
         {
                 echo '<br>'.$table.'<br>';
@@ -37,7 +37,7 @@ function display($table)
                                 {
                                         if($a%2!=0)
                                         {
-                                                echo '<td><input type="text" name="'.$b.'" value="'.$row[$b].'"';
+                                                echo '<td><input type="text" name="'.$table.'['.$b.']" value="'.$row[$b].'"';
 #aby nie zmieniac identyfikatora
                                                 if(ereg($table."_id$",$b))
                                                 {
@@ -54,5 +54,27 @@ function display($table)
         }
 }#end function display()
 
+function update($table)
+{
+	#sprawdzam czy byl wyslany formularz &&
+	#czy dotyczy to aktualnie wyswietlanej tabeli
+	#inaczej wyskoczy blad invalid argument supplied to foreach
+	if(isset($_REQUEST['submit']) && isset($_REQUEST[$table]))
+	{
+		#zachowuje id
+		$id=$_REQUEST[$table][$table.'_id'];
+		#aby teraz je usunac z tablicy
+		unset($_REQUEST[$table][$table.'_id']);
+		#zeby zbudowac string
+		foreach($_REQUEST[$table] as $key=>$value)
+		{
+			$query1.=$key.'=\''.$value.'\',';
+		}
+		#usuwam ostatni przecinek
+		$query1=substr_replace($query1 ,"",-1);
+		$query2 = "UPDATE $table SET $query1 WHERE $table"."_id='$id'";
+		$result = database::getConn()->query($query2);
+	}
+}#end function update
 
 ?>

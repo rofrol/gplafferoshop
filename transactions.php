@@ -1,4 +1,5 @@
 <?php
+require_once('functions.php');
 
 class transactions
 {
@@ -22,7 +23,7 @@ class transactions
 if(!class_exists(transactions_loaded))
 {
 	require_once('database.php');
-	transactions::display();
+	display('transactions');
 	database::getConn()->close();
 }
 ?>
