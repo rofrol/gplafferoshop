@@ -15,6 +15,7 @@ require_once('functions.php');
 display('products');
 display('customers');
 display('transactions');
+login::display();
 
 database::getConn()->close();
 ?>
