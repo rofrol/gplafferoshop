@@ -58,7 +58,7 @@ function update($table)
 {
 	#sprawdzam czy byl wyslany formularz &&
 	#czy dotyczy to aktualnie wyswietlanej tabeli
-	#inaczej wyskoczy blad invalid argument supplied to foreach
+	#aby nie wyskoczyl blad invalid argument supplied to foreach
 	if(isset($_REQUEST['submit']) && isset($_REQUEST[$table]))
 	{
 		#zachowuje id
