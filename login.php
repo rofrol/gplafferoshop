@@ -10,7 +10,7 @@ class login
 <form action="login.php" method="post">
 <table>
 <tr><td>email adress</td><td><input type="text" name="email" size="20" maxlength="80" /></td></tr>
-<tr><td>password</td><td><input type="text" name="pass" size="20" maxlength="20" /></td></tr>
+<tr><td>password</td><td><input type="password" name="pass" size="20" maxlength="20" /></td></tr>
 <tr><td colspan="2" style="text-align: right;"><input type="submit" name="submit" value="Login" /></td></tr>
 </table>
 <input type="hidden" name="submitted" value="TRUE" />
