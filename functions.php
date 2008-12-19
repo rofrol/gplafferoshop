@@ -5,8 +5,8 @@
 function __autoload($filename) {
         if(!ereg("_loaded$", $filename))
         {
-                require_once "{$filename}_loaded.php";
-                require_once "{$filename}.php";
+          require_once "autoload/{$filename}_loaded.php";
+          require_once "{$filename}.php";
         }
 }
 
@@ -76,5 +76,14 @@ function update($table)
 		$result = database::getConn()->query($query2);
 	}
 }#end function update
+
+function display_module($name)
+{
+  if(!class_exists($name.'_loaded'))
+    {
+      display($name);
+      database::getConn()->close();
+    }
+}
 
 ?>
