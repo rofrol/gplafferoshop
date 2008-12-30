@@ -1,1 +1,0 @@
-<?php class login_loaded {} ?>

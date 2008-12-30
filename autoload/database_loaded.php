@@ -1,1 +1,0 @@
-<?php class database_loaded {} ?>
