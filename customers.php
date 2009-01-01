@@ -1,9 +1,23 @@
 <?php
 require_once('functions.php');
 
-class customers
+class customers extends module
 {
-}#end class customers
+  	public static function main()
+        {
+          //odczytanie __CLASS__ nie moze byc w funkcji w klasie nadrzędnej
+          if(basename($_SERVER["SCRIPT_NAME"]) == __CLASS__.".php")
+            {
+              customers::display(__CLASS__);
+            }
+        }
+  	public static function display()
+        {
+          //jesli nazwa klasy rozni sie od nazwy tablic np. przyrostkiem, to mozna usunac
+          //parent::display(ereg_replace('_load$', '', __CLASS__));
+          parent::display(__CLASS__);
+        }
+}//end class customers
 
-display_module(customers);
+customers::main();
 ?>

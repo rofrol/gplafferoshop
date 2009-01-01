@@ -1,4 +1,6 @@
 <?php
+require_once "functions.php";
+
 /*mysql or mysqli
 http://www.johnjawed.com/benchmarks/
 Conclusions
