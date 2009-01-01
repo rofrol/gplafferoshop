@@ -17,7 +17,9 @@ class templateParser
         {
             foreach($tags as $tag=>$data)
             {
-                $data=(is_readable($data))?$this->parseFile($data):$data;
+                //maybe we have to include file?
+                if(is_readable($data))
+                   $this->parseFile($data);
                 $this->output=str_replace('{'.$tag.'}',$data,$this->output);
             }
         }
