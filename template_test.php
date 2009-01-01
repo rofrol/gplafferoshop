@@ -1,6 +1,4 @@
 <?php
-
-// include the class
 require_once('template.php');
 
 // instantiate a new template Parser object

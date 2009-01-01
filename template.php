@@ -3,10 +3,11 @@
 class templateParser
 {
     var $output;
-    function templateParser($templateFile='default_template.htm')
+
+    function __construct($templateFile='default_template.htm')
     {
-        if(file_exists($templateFile))
-            $this->output = file_get_contents($templateFile);
+        if(is_readable($templateFile))
+            $this->output=file_get_contents($templateFile);
         else die('Error:Template file '.$templateFile.' not found');
     }
 
@@ -16,7 +17,7 @@ class templateParser
         {
             foreach($tags as $tag=>$data)
             {
-                $data=(file_exists($data))?$this->parseFile($data):$data;
+                $data=(is_readable($data))?$this->parseFile($data):$data;
                 $this->output=str_replace('{'.$tag.'}',$data,$this->output);
             }
         }
