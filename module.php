@@ -44,7 +44,18 @@ class module
                 echo '<td><input type="submit" name="submit" value="Zmien"></td>';
                 echo '</tr></form>';
             }while($row=$result->fetch_array(MYSQL_BOTH));
+            
+	    echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post"><tr>';
+            echo '<td>&nbsp;</td>';
+	    echo '<td><input type="text" name="'.$table.'['.$b.']" value="'.$row[$b].'"></td>';
+            echo '<td><input type="submit" name="add" value="Dodaj"></td>';
+            echo '</tr></form>';
             echo '</tbody></table>';
+
+		$th = products::getColumns($table);
+	    foreach($th as $t)
+	    	echo $t;
+
             $result->free();
         }
     }//end function display()
@@ -71,6 +82,21 @@ class module
             $result = database::getConn()->query($query2);
         }
     }//end function update
+
+    public static function getColumns($table)
+	{
+		$th = array();
+		$result = database::getConn()->query("select column_name from information_schema.columns where table_name='$table'");
+		while($row=$result->fetch_array(MYSQL_NUM))
+		{
+			foreach($row as $f)
+			{
+				$th[] = $f;
+			}
+		}
+		return $th;
+	}
+
 
 }//end class module
 
