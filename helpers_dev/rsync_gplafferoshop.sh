@@ -9,6 +9,6 @@ if [ "$RUNDIRECTORY" == "$SCRIPTNAME" ]; then
 fi
 
 if [ ! -d /var/www/localhost/htdocs/php5/gplafferoshop ]; then mkdir -p /var/www/localhost/htdocs/php5/gplafferoshop; fi
-rsync -vaWH --delete --exclude=.git $RUNDIRECTORY/../ /var/www/localhost/htdocs/php5/gplafferoshop/
+rsync -vaWH --delete --exclude=.git --exclude=*.swp $RUNDIRECTORY/../ /var/www/localhost/htdocs/php5/gplafferoshop/
 #chown -R rofrol: $RUNDIRECTORY/../
 chown -R apache: /var/www/localhost/htdocs/php5/
