@@ -15,19 +15,20 @@ class module
 		else if($_REQUEST['submit'] == "Add")
 			module::add($table);
 	}
-
-	$th = module::getColumns($table);
         
 	if($result=database::getConn()->query("SELECT * FROM $table"))
         {
-            $row=$result->fetch_array(MYSQL_BOTH);
-            $array_of_keys=array_keys($row);
+	    //get column names, i will use it for displaying table heading and adding record
+	    $th = module::getColumns($table);
 
             echo '<br>'.$table.'<br>';
             echo '<table border="1"><thead><tr>';
 	    foreach($th as $t)
 	    	echo '<th>'.$t.'</th>';
             echo '</tr></thead><tbody>';
+
+            $row=$result->fetch_array(MYSQL_BOTH);
+            $array_of_keys=array_keys($row);
 
             //musze tu zrobic do...while poniewaz each() zmienia chyba pozycje wskaznika w fetch_array i przechodzi sam do nastepnego wiersza
 	    //albo powinienem użyc reset()
