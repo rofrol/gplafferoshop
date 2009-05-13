@@ -25,46 +25,29 @@ class module
             echo '<table border="1"><thead><tr>';
 	    foreach($th as $t)
 	    	echo '<th>'.$t.'</th>';
-            echo '</tr></thead><tbody>';
+	    echo '</tr></thead><tbody>';
 
-            $row=$result->fetch_array(MYSQL_BOTH);
-            $array_of_keys=array_keys($row);
-
-            //musze tu zrobic do...while poniewaz each() zmienia chyba pozycje wskaznika w fetch_array i przechodzi sam do nastepnego wiersza
-	    //albo powinienem użyc reset()
-            do
+	    while($row=$result->fetch_array(MYSQL_ASSOC))
             {
                 //TODO dodac filtrowanie argumentow php_self
                 echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post"><tr>';
-                $array_of_keys=array_keys($row);
-                while(list($a,$b)=each($array_of_keys))
-                {
-                    if($a%2!=0)
-                    {
-                        echo '<td><input type="text" name="'.$table.'['.$b.']" value="'.$row[$b].'"';
-                        //aby nie zmieniac identyfikatora
-                        if(ereg($table."_id$",$b))
-                        {
-                            echo ' readonly="readonly"';
-                        }
-                        echo '></td>';
-                    }
-                }
-                echo '<td><input type="submit" name="submit" value="Change"></td>';
+		list($key,$value)=each($row);
+		echo '<td><input type="text" name="'.$table.'['.$key.']" value="'.$value.'" readonly="readonly"></td>';
+		while(list($key,$value)=each($row))
+			echo '<td><input type="text" name="'.$table.'['.$key.']" value="'.$value.'"></td>';
+	        echo '<td><input type="submit" name="submit" value="Change"></td>';
                 echo '</tr></form>';
-            }while($row=$result->fetch_array(MYSQL_BOTH));
+            }
             
 	    echo '<form action="'.$_SERVER['PHP_SELF'].'" method="post"><tr>';
-            echo '<td>&nbsp;</td>';
-	    foreach($th as $t)
-	    {
-	    	if($t != $table."_id")
-	    	echo '<td><input type="text" name="'.$table.'['.$t.']" value=""></td>';
-	    }
+            echo '<td></td>';
+	    reset($th);
+	    next($th);
+	    while(list(,$value)=each($th))
+	    	echo '<td><input type="text" name="'.$table.'['.$value.']" value=""></td>';
             echo '<td><input type="submit" name="submit" value="Add"></td>';
             echo '</tr></form>';
             echo '</tbody></table>';
-
 
             $result->free();
         }
@@ -78,9 +61,7 @@ class module
 	    unset($_REQUEST[$table][$table.'_id']);
 	    //zeby zbudowac string
 	    foreach($_REQUEST[$table] as $key=>$value)
-	    {
 		    $query1.=$key.'=\''.$value.'\',';
-	    }
 	    //usuwam ostatni przecinek
 	    $query1=substr_replace($query1 ,"",-1);
 	    $query2 = "UPDATE $table SET $query1 WHERE $table"."_id='$id'";
@@ -89,19 +70,17 @@ class module
 
     public static function add($table)
     {
-	    $keys = "";
-	    $values = "";
 	    foreach($_REQUEST[$table] as $key=>$value)
 	    {
 		    $keys .= "$key,";
 		    $values .= "'$value',";
 	    }
-	    //usuwam ostatni przecinek
+	    //remove last comma
 	    $keys=substr_replace($keys ,"",-1);
 	    $values=substr_replace($values ,"",-1);
 	    $query = "INSERT INTO $table ($keys) VALUES($values)";
 	    $result = database::getConn()->query($query);
-    }//end function update
+    }//end function add
 
     public static function getColumns($table)
 	{
