@@ -10,10 +10,12 @@ class module
         //aby nie wyskoczyl blad invalid argument supplied to foreach
 	if(isset($_REQUEST['submit']) && isset($_REQUEST[$table]))
 	{
-		if($_REQUEST['submit'] == "Change")
+		if($_REQUEST['submit'] == "&#8629;")
 			module::update($table);
-		else if($_REQUEST['submit'] == "Add")
+		else if($_REQUEST['submit'] == "+")
 			module::add($table);
+		else if($_REQUEST['submit'] == "x")
+			module::delete($table);
 	}
         
 	if($result=database::getConn()->query("SELECT * FROM $table"))
@@ -22,7 +24,7 @@ class module
 	    $th = module::getColumns($table);
 
             echo '<br>'.$table.'<br>';
-            echo '<table border="1"><thead><tr>';
+            echo '<table border="0"><thead><tr>';
 	    foreach($th as $t)
 	    	echo '<th>'.$t.'</th>';
 	    echo '</tr></thead><tbody>';
@@ -35,7 +37,8 @@ class module
 		echo '<td><input type="text" name="'.$table.'['.$key.']" value="'.$value.'" readonly="readonly"></td>';
 		while(list($key,$value)=each($row))
 			echo '<td><input type="text" name="'.$table.'['.$key.']" value="'.$value.'"></td>';
-	        echo '<td><input type="submit" name="submit" value="Change"></td>';
+	        echo '<td><input type="submit" name="submit" value="&#8629;"></td>';
+	        echo '<td><input type="submit" name="submit" value="x"></td>';
                 echo '</tr></form>';
             }
             
@@ -45,7 +48,7 @@ class module
 	    next($th);
 	    while(list(,$value)=each($th))
 	    	echo '<td><input type="text" name="'.$table.'['.$value.']" value=""></td>';
-            echo '<td><input type="submit" name="submit" value="Add"></td>';
+            echo '<td><input type="submit" name="submit" value="+"></td>';
             echo '</tr></form>';
             echo '</tbody></table>';
 
@@ -81,6 +84,12 @@ class module
 	    $query = "INSERT INTO $table ($keys) VALUES($values)";
 	    $result = database::getConn()->query($query);
     }//end function add
+
+    public static function delete($table)
+    {
+	    $query = "DELETE FROM $table WHERE ".$table."_id = '".$_REQUEST[$table][$table."_id"]."'";
+	    $result = database::getConn()->query($query);
+    }//end function delete
 
     public static function getColumns($table)
 	{
